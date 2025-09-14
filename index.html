@@ -236,7 +236,8 @@
 
       .contact-content {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        /* grid-template-columns: 1fr 1fr; */
+        grid-template-columns: 1fr;
         gap: 3rem;
       }
 
@@ -358,7 +359,10 @@
       <header class="header">
         <div class="container">
           <div class="nav-container">
-            <div class="logo"><i class="fas fa-cog"></i> 恒矿轴承</div>
+            <div class="logo">
+              <!-- <i class="fas fa-cog"></i> -->
+              HKUB 恒矿轴承
+            </div>
             <nav>
               <ul class="nav-menu">
                 <li><a @click="scrollTo('home')">首页</a></li>
@@ -391,7 +395,7 @@
             <div class="about-text">
               <h3 style="color: #1e3c72; margin-bottom: 1rem; font-size: 1.5rem">专业轴承制造商</h3>
               <p>
-                恒矿轴承科技有限公司成立于2010年，专业从事二类轴承的研发、生产和销售。公司拥有先进的生产设备和检测仪器，严格按照ISO9001质量管理体系执行生产管控。
+                瓦房店恒矿轴承厂，成立于2010年，位于辽宁省大连市，是一家以从事轴承制造业为主的企业。主要生产拔管机，振动筛，汽车，矿山，轮船，油田，钢厂，工程机械等专用轴承。
               </p>
               <br />
               <p>我们的产品广泛应用于汽车、工程机械、电机、风力发电等行业，凭借优异的品质和完善的服务体系，赢得了众多客户的信赖与支持。</p>
@@ -437,12 +441,11 @@
       </section>
 
       <!-- 联系我们 -->
-      <!-- 联系我们 -->
       <section id="contact" class="contact">
         <div class="container">
           <h2 class="section-title">联系我们</h2>
           <div class="contact-content">
-            <div class="contact-info">
+            <!-- <div class="contact-info">
               <h3 style="margin-bottom: 2rem; color: #1e3c72">联系信息</h3>
               <div class="contact-item">
                 <i class="fas fa-map-marker-alt"></i>
@@ -465,17 +468,21 @@
                   info@jingong-bearing.com
                 </div>
               </div>
-            </div>
+            </div> -->
             <div class="contact-form">
               <h3 style="margin-bottom: 2rem; color: #1e3c72">留言反馈</h3>
               <form @submit.prevent="submitForm">
                 <div class="form-group">
-                  <label>姓名</label>
-                  <input type="text" v-model="form.name" required />
-                </div>
-                <div class="form-group">
-                  <label>联系电话</label>
-                  <input type="tel" v-model="form.phone" required />
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem">
+                    <div>
+                      <label>姓名</label>
+                      <input type="text" v-model="form.name" required />
+                    </div>
+                    <div>
+                      <label>联系电话</label>
+                      <input type="tel" v-model="form.phone" required />
+                    </div>
+                  </div>
                 </div>
                 <div class="form-group">
                   <label>反馈内容</label>
@@ -491,7 +498,7 @@
       <!-- 页脚 -->
       <footer class="footer">
         <div class="container">
-          <p>&copy; 2025 恒矿轴承科技有限公司 版权所有 </p>
+          <p>&copy; 2025 HKUB 恒矿轴承</p>
         </div>
       </footer>
     </div>
@@ -503,45 +510,39 @@
           products: [
             {
               id: 1,
-              name: "深沟球轴承",
-              description: "适用于高速旋转，承受径向载荷和轴向载荷，广泛应用于电机、汽车等行业",
-              image:
-                "https://images.openai.com/thumbnails/url/PotbInicu1mSUVJSUGylr5-al1xUWVCSmqJbkpRnoJdeXJJYkpmsl5yfq5-Zm5ieWmxfaAuUsXL0S7F0Tw5KMzX1ybKMKDKPDPULi8wxDkw3LQkyT4w08LBwSXfOKzaMDwpxyzPMC_ApCgz3yc0p9gsND6tyN0grLFcrBgD5pSl2", // 白底深沟球轴承图
+              name: "NJ系列",
+              description: "适用于减速机、电机、工程机械、轧钢设备。精准定位，承载稳定，保障关键机械运转安全",
+              image: "./images/NJ系列.jpg",
             },
             {
               id: 2,
-              name: "角接触球轴承",
-              description: "能同时承受径向和轴向载荷，适用于高精度、高转速的机械设备",
-              image:
-                "https://images.openai.com/thumbnails/url/_AW5Qnicu1mUUVJSUGylr5-al1xUWVCSmqJbkpRnoJdeXJJYkpmsl5yfq5-Zm5ieWmxfaAuUsXL0S7F0Tw5OT0qxCE309wo0rszyincvCAnLKohy0jW2NPRN8reMCHFyTUr0zy7y8nAxrTD39rE0tIxyK3ErznVXKwYArKIoFQ", // 白底角接触球轴承图
+              name: "NU系列",
+              description: "适用于发电机长轴、轧机、精密机床、工业传动轴。灵活补偿，轻松应对热膨胀和长轴偏移。",
+              image: "./images/NU系列.jpg",
             },
             {
               id: 3,
-              name: "调心球轴承",
-              description: "具有自调心性能，能补偿轴的挠度和壳体变形，适用于重载设备",
-              image:
-                "https://images.openai.com/thumbnails/url/Fdw4f3icu1mSUVJSUGylr5-al1xUWVCSmqJbkpRnoJdeXJJYkpmsl5yfq5-Zm5ieWmxfaAuUsXL0S7F0Tw4sSwwoDiotMIgqzcwoLSpM9govDjQpt0yNMjA2D69KTgn1yk40MnENDjT2iMyPykoNds32y3IuczfyKVcrBgA8eSpO", // 白底调心球轴承图
+              name: "N系列",
+              description: "适用于长轴机械设备、发电机、压缩机、轧钢设备。耐用高效，确保长期稳定运行。",
+              image: "./images/N系列.jpg",
             },
             {
               id: 4,
-              name: "圆柱滚子轴承",
-              description: "承受径向载荷能力强，适用于电机、减速机、轧钢设备等",
-              image:
-                "https://images.openai.com/thumbnails/url/PotbInicu1mSUVJSUGylr5-al1xUWVCSmqJbkpRnoJdeXJJYkpmsl5yfq5-Zm5ieWmxfaAuUsXL0S7F0Tw5KMzX1ybKMKDKPDPULi8wxDkw3LQkyT4w08LBwSXfOKzaMDwpxyzPMC_ApCgz3yc0p9gsND6tyN0grLFcrBgD5pSl2", // 白底图重复，用于圆柱滚子轴承
+              name: "",
+              description: "现代化车间环境，整洁明亮，展示公司生产实力。",
+              image: "./images/1.jpg",
             },
             {
               id: 5,
-              name: "推力球轴承",
-              description: "专门承受轴向载荷，适用于离心泵、压缩机等设备",
-              image:
-                "https://images.openai.com/thumbnails/url/_AW5Qnicu1mUUVJSUGylr5-al1xUWVCSmqJbkpRnoJdeXJJYkpmsl5yfq5-Zm5ieWmxfaAuUsXL0S7F0Tw5OT0qxCE309wo0rszyincvCAnLKohy0jW2NPRN8reMCHFyTUr0zy7y8nAxrTD39rE0tIxyK3ErznVXKwYArKIoFQ", // 白底推力球轴承图
+              name: "",
+              description: "宽敞空间和高效布局，体现企业专业化管理氛围。",
+              image: "./images/2.jpg",
             },
             {
               id: 6,
-              name: "关节轴承",
-              description: "适用于低速摆动运动、倾斜运动和旋转运动，广泛用于工程机械",
-              image:
-                "https://images.openai.com/thumbnails/url/Fdw4f3icu1mSUVJSUGylr5-al1xUWVCSmqJbkpRnoJdeXJJYkpmsl5yfq5-Zm5ieWmxfaAuUsXL0S7F0Tw4sSwwoDiotMIgqzcwoLSpM9govDjQpt0yNMjA2D69KTgn1yk40MnENDjT2iMyPykoNds32y3IuczfyKVcrBgA8eSpO", // 白底关节轴承图
+              name: "",
+              description: "厂区景观与设备一角，彰显企业规模与现代化水平。",
+              image: "./images/3.jpg",
             },
           ],
           services: [
