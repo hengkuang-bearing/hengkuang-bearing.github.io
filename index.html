@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>恒矿轴承 - 专业二类轴承制造商</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.14/vue.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Microsoft YaHei", Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* 头部导航 */
+      .header {
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        color: white;
+        padding: 1rem 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-menu a {
+        color: white;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        cursor: pointer;
+      }
+
+      .nav-menu a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      /* 主横幅 */
+      .hero {
+        background: linear-gradient(rgba(30, 60, 114, 0.8), rgba(42, 82, 152, 0.8)),
+          url("https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80") center/cover;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        color: white;
+        text-align: center;
+      }
+
+      .hero-content h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        animation: fadeInUp 1s ease-out;
+      }
+
+      .hero-content p {
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+        animation: fadeInUp 1s ease-out 0.3s both;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: linear-gradient(45deg, #ff6b6b, #ee5a5a);
+        color: white;
+        padding: 1rem 2rem;
+        text-decoration: none;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        transition: transform 0.3s, box-shadow 0.3s;
+        animation: fadeInUp 1s ease-out 0.6s both;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4);
+      }
+
+      /* 公司介绍 */
+      .about {
+        padding: 5rem 0;
+        background: #f8f9fa;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: #1e3c72;
+        position: relative;
+      }
+
+      .section-title::after {
+        content: "";
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(45deg, #ff6b6b, #ee5a5a);
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+      }
+
+      .about-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+      }
+
+      .about-image {
+        text-align: center;
+      }
+
+      .about-image img {
+        width: 100%;
+        max-width: 500px;
+        border-radius: 15px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      }
+
+      /* 产品展示 */
+      .products {
+        padding: 5rem 0;
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .product-card {
+        background: white;
+        border-radius: 15px;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .product-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 1.5rem;
+      }
+
+      .product-card h3 {
+        color: #1e3c72;
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+      }
+
+      /* 服务优势 */
+      .services {
+        padding: 5rem 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .service-item {
+        text-align: center;
+        padding: 2rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+      }
+
+      .service-item i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: #ffd700;
+      }
+
+      .service-item h3 {
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+      }
+
+      /* 联系我们 */
+      .contact {
+        padding: 5rem 0;
+        background: #f8f9fa;
+      }
+
+      .contact-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+      }
+
+      .contact-info {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .contact-item i {
+        font-size: 1.5rem;
+        color: #1e3c72;
+        margin-right: 1rem;
+        width: 30px;
+      }
+
+      .contact-form {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #333;
+        font-weight: bold;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.8rem;
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: #1e3c72;
+      }
+
+      .submit-btn {
+        background: linear-gradient(45deg, #1e3c72, #2a5298);
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.3s;
+        width: 100%;
+      }
+
+      .submit-btn:hover {
+        background: linear-gradient(45deg, #2a5298, #1e3c72);
+      }
+
+      /* 页脚 */
+      .footer {
+        background: #1a1a1a;
+        color: white;
+        padding: 2rem 0;
+        text-align: center;
+      }
+
+      /* 动画 */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* 响应式设计 */
+      @media (max-width: 768px) {
+        .nav-menu {
+          display: none;
+        }
+
+        .hero-content h1 {
+          font-size: 2.5rem;
+        }
+
+        .about-content,
+        .contact-content {
+          grid-template-columns: 1fr;
+        }
+
+        .products-grid,
+        .services-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 头部导航 -->
+      <header class="header">
+        <div class="container">
+          <div class="nav-container">
+            <div class="logo"><i class="fas fa-cog"></i> 恒矿轴承</div>
+            <nav>
+              <ul class="nav-menu">
+                <li><a @click="scrollTo('home')">首页</a></li>
+                <li><a @click="scrollTo('about')">关于我们</a></li>
+                <li><a @click="scrollTo('products')">产品中心</a></li>
+                <li><a @click="scrollTo('services')">服务优势</a></li>
+                <li><a @click="scrollTo('contact')">联系我们</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <!-- 主横幅 -->
+      <section id="home" class="hero">
+        <div class="container">
+          <div class="hero-content">
+            <h1>恒矿轴承</h1>
+            <p>专业二类轴承制造商，品质铸就未来</p>
+            <a href="#" class="cta-button" @click="scrollTo('contact')"> <i class="fas fa-phone"></i> 立即咨询 </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 公司介绍 -->
+      <section id="about" class="about">
+        <div class="container">
+          <h2 class="section-title">关于我们</h2>
+          <div class="about-content">
+            <div class="about-text">
+              <h3 style="color: #1e3c72; margin-bottom: 1rem; font-size: 1.5rem">专业轴承制造商</h3>
+              <p>
+                恒矿轴承科技有限公司成立于2010年，专业从事二类轴承的研发、生产和销售。公司拥有先进的生产设备和检测仪器，严格按照ISO9001质量管理体系执行生产管控。
+              </p>
+              <br />
+              <p>我们的产品广泛应用于汽车、工程机械、电机、风力发电等行业，凭借优异的品质和完善的服务体系，赢得了众多客户的信赖与支持。</p>
+              <br />
+              <p>公司秉承"质量第一，客户至上"的经营理念，不断创新发展，致力于成为行业领先的轴承制造商。</p>
+            </div>
+            <div class="about-image">
+              <img
+                src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                alt="轴承生产车间"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 产品展示 -->
+      <section id="products" class="products">
+        <div class="container">
+          <h2 class="section-title">产品中心</h2>
+          <div class="products-grid">
+            <div class="product-card" v-for="product in products" :key="product.id">
+              <img :src="product.image" :alt="product.name" />
+              <h3>{{ product.name }}</h3>
+              <p>{{ product.description }}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 服务优势 -->
+      <section id="services" class="services">
+        <div class="container">
+          <h2 class="section-title">服务优势</h2>
+          <div class="services-grid">
+            <div class="service-item" v-for="service in services" :key="service.id">
+              <i :class="service.icon"></i>
+              <h3>{{ service.title }}</h3>
+              <p>{{ service.description }}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 联系我们 -->
+      <!-- 联系我们 -->
+      <section id="contact" class="contact">
+        <div class="container">
+          <h2 class="section-title">联系我们</h2>
+          <div class="contact-content">
+            <div class="contact-info">
+              <h3 style="margin-bottom: 2rem; color: #1e3c72">联系信息</h3>
+              <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                  <strong>公司地址</strong><br />
+                  江苏省苏州市工业园区轴承大道128号
+                </div>
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <div>
+                  <strong>联系电话</strong><br />
+                  400-888-6666
+                </div>
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                  <strong>邮箱地址</strong><br />
+                  info@jingong-bearing.com
+                </div>
+              </div>
+            </div>
+            <div class="contact-form">
+              <h3 style="margin-bottom: 2rem; color: #1e3c72">留言反馈</h3>
+              <form @submit.prevent="submitForm">
+                <div class="form-group">
+                  <label>姓名</label>
+                  <input type="text" v-model="form.name" required />
+                </div>
+                <div class="form-group">
+                  <label>联系电话</label>
+                  <input type="tel" v-model="form.phone" required />
+                </div>
+                <div class="form-group">
+                  <label>反馈内容</label>
+                  <textarea v-model="form.message" rows="5" required placeholder="请留下您的意见或建议"></textarea>
+                </div>
+                <button type="submit" class="submit-btn"><i class="fas fa-paper-plane"></i> 提交反馈</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 页脚 -->
+      <footer class="footer">
+        <div class="container">
+          <p>&copy; 2025 恒矿轴承科技有限公司 版权所有 </p>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          products: [
+            {
+              id: 1,
+              name: "深沟球轴承",
+              description: "适用于高速旋转，承受径向载荷和轴向载荷，广泛应用于电机、汽车等行业",
+              image:
+                "https://images.openai.com/thumbnails/url/PotbInicu1mSUVJSUGylr5-al1xUWVCSmqJbkpRnoJdeXJJYkpmsl5yfq5-Zm5ieWmxfaAuUsXL0S7F0Tw5KMzX1ybKMKDKPDPULi8wxDkw3LQkyT4w08LBwSXfOKzaMDwpxyzPMC_ApCgz3yc0p9gsND6tyN0grLFcrBgD5pSl2", // 白底深沟球轴承图
+            },
+            {
+              id: 2,
+              name: "角接触球轴承",
+              description: "能同时承受径向和轴向载荷，适用于高精度、高转速的机械设备",
+              image:
+                "https://images.openai.com/thumbnails/url/_AW5Qnicu1mUUVJSUGylr5-al1xUWVCSmqJbkpRnoJdeXJJYkpmsl5yfq5-Zm5ieWmxfaAuUsXL0S7F0Tw5OT0qxCE309wo0rszyincvCAnLKohy0jW2NPRN8reMCHFyTUr0zy7y8nAxrTD39rE0tIxyK3ErznVXKwYArKIoFQ", // 白底角接触球轴承图
+            },
+            {
+              id: 3,
+              name: "调心球轴承",
+              description: "具有自调心性能，能补偿轴的挠度和壳体变形，适用于重载设备",
+              image:
+                "https://images.openai.com/thumbnails/url/Fdw4f3icu1mSUVJSUGylr5-al1xUWVCSmqJbkpRnoJdeXJJYkpmsl5yfq5-Zm5ieWmxfaAuUsXL0S7F0Tw4sSwwoDiotMIgqzcwoLSpM9govDjQpt0yNMjA2D69KTgn1yk40MnENDjT2iMyPykoNds32y3IuczfyKVcrBgA8eSpO", // 白底调心球轴承图
+            },
+            {
+              id: 4,
+              name: "圆柱滚子轴承",
+              description: "承受径向载荷能力强，适用于电机、减速机、轧钢设备等",
+              image:
+                "https://images.openai.com/thumbnails/url/PotbInicu1mSUVJSUGylr5-al1xUWVCSmqJbkpRnoJdeXJJYkpmsl5yfq5-Zm5ieWmxfaAuUsXL0S7F0Tw5KMzX1ybKMKDKPDPULi8wxDkw3LQkyT4w08LBwSXfOKzaMDwpxyzPMC_ApCgz3yc0p9gsND6tyN0grLFcrBgD5pSl2", // 白底图重复，用于圆柱滚子轴承
+            },
+            {
+              id: 5,
+              name: "推力球轴承",
+              description: "专门承受轴向载荷，适用于离心泵、压缩机等设备",
+              image:
+                "https://images.openai.com/thumbnails/url/_AW5Qnicu1mUUVJSUGylr5-al1xUWVCSmqJbkpRnoJdeXJJYkpmsl5yfq5-Zm5ieWmxfaAuUsXL0S7F0Tw5OT0qxCE309wo0rszyincvCAnLKohy0jW2NPRN8reMCHFyTUr0zy7y8nAxrTD39rE0tIxyK3ErznVXKwYArKIoFQ", // 白底推力球轴承图
+            },
+            {
+              id: 6,
+              name: "关节轴承",
+              description: "适用于低速摆动运动、倾斜运动和旋转运动，广泛用于工程机械",
+              image:
+                "https://images.openai.com/thumbnails/url/Fdw4f3icu1mSUVJSUGylr5-al1xUWVCSmqJbkpRnoJdeXJJYkpmsl5yfq5-Zm5ieWmxfaAuUsXL0S7F0Tw4sSwwoDiotMIgqzcwoLSpM9govDjQpt0yNMjA2D69KTgn1yk40MnENDjT2iMyPykoNds32y3IuczfyKVcrBgA8eSpO", // 白底关节轴承图
+            },
+          ],
+          services: [
+            {
+              id: 1,
+              icon: "fas fa-award",
+              title: "品质保证",
+              description: "严格的质量管控体系，确保每一个产品都符合行业标准",
+            },
+            {
+              id: 2,
+              icon: "fas fa-shipping-fast",
+              title: "快速交付",
+              description: "完善的库存体系，标准产品当天发货，定制产品快速交付",
+            },
+            {
+              id: 3,
+              icon: "fas fa-tools",
+              title: "技术支持",
+              description: "专业的技术团队，为客户提供选型指导和技术解决方案",
+            },
+            {
+              id: 4,
+              icon: "fas fa-headset",
+              title: "售后服务",
+              description: "7×24小时客服支持，完善的售后服务体系",
+            },
+          ],
+          form: {
+            name: "",
+            phone: "",
+            email: "",
+            message: "",
+          },
+        },
+        methods: {
+          scrollTo(elementId) {
+            document.getElementById(elementId).scrollIntoView({
+              behavior: "smooth",
+            })
+          },
+          submitForm() {
+            alert("感谢您的咨询！我们已记录您的反馈。")
+            // 重置表单
+            this.form = {
+              name: "",
+              phone: "",
+              email: "",
+              message: "",
+            }
+          },
+        },
+      })
+    </script>
+  </body>
+</html>
